@@ -30,6 +30,7 @@ class App extends Component {
       _title = this.state.contents[0].title;
       _desc = this.state.contents[0].desc;
     }
+    console.log('render is', this)
     return (
       <div className="App">
         {/* <Subject
@@ -38,9 +39,16 @@ class App extends Component {
         </Subject> */}
         <header>
           <h1><a href='/' onClick={function (e) {
-            console.log(e);
+            console.log('event in', this);
             e.preventDefault();
-          }}>{this.state.Subject.title}</a></h1>
+            return;
+            // to provent event's default function
+            e.preventDefault();
+            this.setState({
+              mode: 'welcome'
+            })
+            // when it cannot find this
+          }.bind(this)}>{this.state.Subject.title}</a></h1>
           {this.state.Subject.subtitle}
         </header>
 
